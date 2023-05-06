@@ -13,6 +13,7 @@ public class SqlDataAccess : ISqlDataAccess
 
     public async Task<IEnumerable<T>> LoadData<T>(string storedProcedure, string connectionId = "Default")
     {
+        String connectionString = _config.GetConnectionString(connectionId);
         using IDbConnection connection = new MySqlConnection(_config.GetConnectionString(connectionId));
 
         return await connection.QueryAsync<T>(storedProcedure);

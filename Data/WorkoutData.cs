@@ -32,17 +32,18 @@ public class WorkoutData : IWorkoutData
         string sqlStatement = getAction("WORKOUTS-WIDEOPEN").Result;
         return await _db.LoadData<WorkoutModel>(sqlStatement, "Default");
     }
+
     public async Task InsertWorkout(WorkoutModel workout)
     {
         string sqlStatement = getAction("WORKOUTS-INSERT").Result;
-        string populatedStatement = String.Format(sqlStatement, workout.Name);
+        string populatedStatement = String.Format(sqlStatement, workout.Name, workout.CategoryId, workout.Complexity);
         await _db.SaveData<WorkoutModel>(populatedStatement, "Default");
     }
 
     public async Task UpdateWorkout(WorkoutModel workout)
     {
         string sqlStatement = getAction("WORKOUTS-UPDATE").Result;
-        string populatedStatement = String.Format(sqlStatement, workout.Name, workout.WorkoutId);
+        string populatedStatement = String.Format(sqlStatement, workout.Name, workout.WorkoutId, workout.CategoryId, workout.Complexity);
         await _db.SaveData<WorkoutModel>(populatedStatement, "Default");
     }
 
