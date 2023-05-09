@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<IWorkoutData, WorkoutData>();
+builder.Services.AddSingleton<IWorkoutLogData, WorkoutLogData>();
 
 builder.Services.AddCors(options =>
 {
@@ -35,8 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("MyAllowedOrigins");
 
-app.UseCors();
-
 app.ConfigureWorkoutEndpoints();
+app.ConfigureWorkoutLogEndpoints();
 
 app.Run();

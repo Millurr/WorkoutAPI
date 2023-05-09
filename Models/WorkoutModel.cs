@@ -12,11 +12,3 @@ public class WorkoutModel : CategoryModel
 
     public int Complexity { get; set; } = 1;
 }
-
-public class CategoryModel
-{
-    public int CategoryId { get; set; }
-
-    public string CategoryName { get; set; } = string.Empty;
-
-}
